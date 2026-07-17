@@ -1,0 +1,37 @@
+---
+description: REST API conventions — status codes, errors, security
+globs: "**/*Controller.java,**/dto/**/*.java,**/exception/**/*.java"
+alwaysApply: false
+---
+
+# API Conventions
+
+## Responses & status codes
+
+- `201` create (e.g. registration), `204` delete, `409` conflict (duplicate email)
+- Do not return entities from controllers — use request/response DTOs
+- Never expose password hashes in responses
+
+## Error envelope
+
+Use a global `@RestControllerAdvice`. Shape:
+
+```json
+{
+  "status": 409,
+  "error": "Conflict",
+  "message": "An account with this email already exists",
+  "timestamp": "2026-07-17T10:30:00"
+}
+```
+
+Validation failures return `400` with a clear message (and field details when useful).
+
+## Security
+
+| Access | Endpoints |
+|--------|-----------|
+| Public | `/api/auth/**` |
+| Authenticated | All other endpoints |
+
+Use JWT Bearer tokens. Stateless sessions; CSRF disabled.

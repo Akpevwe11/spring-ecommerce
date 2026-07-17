@@ -1,0 +1,23 @@
+---
+description: JPA entities and persistence conventions
+globs: "**/entity/**/*.java,**/repository/**/*.java"
+alwaysApply: false
+---
+
+# Persistence
+
+## User entity
+
+- Fields: `id` (Long), `firstName`, `lastName`, `email`, `password`, `role`, `createdAt`, `updatedAt`
+- Email: unique column constraint; store lowercase
+- Role enum: `CUSTOMER`, `ADMIN`
+
+## Repositories
+
+- Prefer Spring Data derived queries (`findByEmail`, `existsByEmail`)
+- Do not expose password fields through DTOs or API responses
+
+## Schema
+
+- Prefer JPA schema management for local/dev (`ddl-auto=update`) unless migrations are explicitly required
+- Always keep a unique constraint on `email`

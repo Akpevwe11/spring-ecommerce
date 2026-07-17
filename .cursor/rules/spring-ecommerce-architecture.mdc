@@ -1,0 +1,52 @@
+---
+description: Spring Boot ecommerce architecture, stack, and package layout
+alwaysApply: true
+---
+
+# Spring Ecommerce Architecture
+
+REST API for ecommerce with JWT auth. Base package: `com.codewithmosh.springecommerce`.
+
+## Stack
+
+- Spring Boot 4.1, Java 17, Maven, Lombok
+- Web MVC + Spring Data JPA + PostgreSQL
+- Spring Security + JWT (`jjwt`) with roles `CUSTOMER`, `ADMIN`
+- Jakarta Validation
+
+## Package layout (layered)
+
+```
+config/
+controller/
+dto/
+entity/
+exception/
+repository/
+security/
+service/
+```
+
+Place types in these global layer packages (not feature packages).
+
+## API & IDs
+
+- Auth endpoints under `/api/auth/**` (public)
+- All other endpoints require authentication
+- Entity IDs are Long (auto-generated)
+- Unique email enforced at DB and application layer
+
+## Auth conventions
+
+- Register: `POST /api/auth/register` → `201 Created`
+- New users get role `CUSTOMER`
+- Passwords: BCrypt; never return in responses
+- Emails: required, valid format, unique, stored lowercase
+- JWT subject = email; include `role` claim
+- Stateless session; CSRF disabled for the API
+
+## Security & DTOs
+
+- Constructor injection only
+- Do not return JPA entities from controllers — use DTOs
+- Centralized `@RestControllerAdvice` for API errors
