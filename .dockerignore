@@ -1,0 +1,10 @@
+target/
+.git/
+.idea/
+.cursor/
+*.iml
+HELP.md
+**/.DS_Store
+sg docker -c "docker compose stop app"
+
+sg docker -c "docker compose up --build"

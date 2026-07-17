@@ -8,7 +8,7 @@
         <version>4.1.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.codewithmosh</groupId>
+    <groupId>com.springecommerce</groupId>
     <artifactId>spring-ecommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-ecommerce</name>
@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-aspectj</artifactId>
         </dependency>
 
         <dependency>

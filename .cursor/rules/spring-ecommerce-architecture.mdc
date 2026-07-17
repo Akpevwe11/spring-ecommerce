@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Spring Ecommerce Architecture
 
-REST API for ecommerce with JWT auth. Base package: `com.codewithmosh.springecommerce`.
+REST API for ecommerce with JWT auth. Base package: `com.springecommerce`.
 
 ## Stack
 
